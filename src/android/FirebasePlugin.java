@@ -99,9 +99,6 @@ public class FirebasePlugin extends CordovaPlugin {
         if (action.equals("getInstanceId")) {
             this.getInstanceId(callbackContext);
             return true;
-        } else if (action.equals("getId")) {
-            this.getId(callbackContext);
-            return true;
         } else if (action.equals("getToken")) {
             this.getToken(callbackContext);
             return true;
