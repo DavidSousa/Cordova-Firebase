@@ -1,6 +1,5 @@
 package org.apache.cordova.firebase;
 
-import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -13,7 +12,6 @@ import android.util.Log;
 import android.app.Notification;
 import android.text.TextUtils;
 import android.content.ContentResolver;
-import android.graphics.Color;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -117,10 +115,8 @@ public class FirebasePluginMessagingService extends FirebaseMessagingService {
             PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id.hashCode(), intent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
 
-            String channelId = this.getStringResource("default_notification_channel_id");
-            String channelName = this.getStringResource("default_notification_channel_name");
             Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, channelId)
+            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setContentTitle(title)
                 .setContentText(messageBody)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
@@ -175,12 +171,12 @@ public class FirebasePluginMessagingService extends FirebaseMessagingService {
             NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
             // Since android Oreo notification channel is needed.
-//            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-//              NotificationChannel channel = new NotificationChannel(channelId,
-//                channelName,
-//                NotificationManager.IMPORTANCE_DEFAULT);
-//              notificationManager.createNotificationChannel(channel);
-//            }
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+              NotificationChannel channel = new NotificationChannel(channelId,
+                channelName,
+                NotificationManager.IMPORTANCE_DEFAULT);
+              notificationManager.createNotificationChannel(channel);
+            }
 
             notificationManager.notify(id.hashCode(), notification);
         } else {
