@@ -318,7 +318,7 @@ public class FirebasePlugin extends CordovaPlugin {
 
     public static void sendNotification(Bundle bundle) {
         //check if app is in foreground and add response to bundle
-        bundle.putBoolean("foreground:",true);
+        //bundle.putBoolean("foreground:",true);
 
         if (!FirebasePlugin.hasNotificationsCallback()) {
             if (FirebasePlugin.notificationStack == null) {
