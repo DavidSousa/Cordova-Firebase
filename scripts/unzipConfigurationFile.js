@@ -28,7 +28,7 @@ function getResourcesFolderPath(context) {
 
     if (platform === constants.android.platform) {
         return path.join(platformPath, constants.android.wwwFolder);
-    } else if (platform === constants.ios.PLATFORM) {
+    } else if (platform === constants.ios.platform) {
         return path.join(platformPath, constants.ios.wwwFolder);
     } else {
         return;
