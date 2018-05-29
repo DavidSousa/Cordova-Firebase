@@ -3,17 +3,9 @@ This plugin brings push notifications, analytics, event tracking, crash reportin
 Android and iOS supported.
 
 ## Installation
-See npm package for versions - https://www.npmjs.com/package/cordova-plugin-firebase
-
-Install the plugin by adding it your project's config.xml:
-```
-<plugin name="cordova-plugin-firebase" spec="0.1.25" />
-```
-or by running:
-```
-cordova plugin add cordova-plugin-firebase@0.1.25 --save
-```
-Download your Firebase configuration files, GoogleService-Info.plist for ios and google-services.json for android, and place them in the root folder of your cordova project:
+1) Download your Firebase configuration files, GoogleService-Info.plist for ios and google-services.json for android.
+2) Create a zipped folder with the name "google-services.zip" and put both configuration files inside.
+3) On the project root folder, create a folder called "firebase.<appIdentifier>" and place the zip inside.
 
 ```
 - My Project/
@@ -21,14 +13,16 @@ Download your Firebase configuration files, GoogleService-Info.plist for ios and
     plugins/
     www/
     config.xml
-    google-services.json       <--
-    GoogleService-Info.plist   <--
+    firebase.com.example.application.appid/
+      google-services.zip/
+        google-services.json        <--
+        GoogleService-Info.plist    <--
     ...
 ```
 
 See https://support.google.com/firebase/answer/7015592 for details how to download the files from firebase.
 
-This plugin uses a hook (after prepare) that copies the configuration files to the right place, namely platforms/ios/\<My Project\>/Resources for ios and platforms/android for android.
+This plugin uses a hook (before plugin install) that copies the configuration files to the right place, namely platforms/ios/\<My Project\>/Resources for ios and platforms/android for android.
 
 **Note that the Firebase SDK requires the configuration files to be present and valid, otherwise your app will crash on boot or Firebase features won't work.**
 
