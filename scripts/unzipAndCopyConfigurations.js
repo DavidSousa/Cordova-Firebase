@@ -73,7 +73,6 @@ function getPlatformConfigs(platform) {
 }
 
 function getAppId(context) {
-  console.log('projectRoot: ' + context.opts.projectRoot);
   var config_xml = path.join(context.opts.projectRoot, 'config.xml');
   var et = context.requireCordovaModule('elementtree');
   var data = fs.readFileSync(config_xml).toString();
@@ -105,8 +104,6 @@ module.exports = function (context) {
 
   var appId = getAppId(context);
 
-  console.log('appId: ' + appId);
-
   var platform = context.opts.plugin.platform;
   var platformConfig = getPlatformConfigs(platform);
   if (!platformConfig) {
@@ -125,43 +122,6 @@ module.exports = function (context) {
   var zip = new AdmZip(googleServicesZipFile);
   zip.extractAllTo(targetPath, true);
 
-  /*
-  if (platform === constants.ios.platform) {
-    fs.readdir(targetPath, function (err, files) {
-      if (err) {
-        console.error("Error copying files");
-        defer.reject();
-        return;
-      }
-  
-      var filename = files.find(function (name) {
-        return name.endsWith(platformConfig.fileExtension);
-      });
-  
-      if (!filename) {
-        console.error("No file found");
-        defer.reject();
-        return;
-      }
-  
-      var srcFilePath = path.join(targetPath, filename);
-      var destFilePath = path.join(context.opts.plugin.dir, filename);
-  
-      fs.createReadStream(srcFilePath)
-        .pipe(fs.createWriteStream(destFilePath))
-        .on("error", function (err) {
-          console.log("here1");
-          var a = b.c.d;
-          defer.reject();
-        })
-        .on("close", function () {
-          console.log("here2");
-          var a = b.c.d;
-          defer.resolve();
-        });
-    });
-  } else {
-  */
   var files = fs.readdirSync(targetPath);
   if (!files) {
     handleError("No directory found");
@@ -177,16 +137,11 @@ module.exports = function (context) {
   var sourceFilePath = path.join(targetPath, fileName);
   var destFilePath = path.join(context.opts.plugin.dir, fileName);
 
-  console.log("srcFilePath: " + sourceFilePath);
-  console.log("destFilePath: " + destFilePath);
-
   fs.createReadStream(sourceFilePath).pipe(fs.createWriteStream(destFilePath))
     .on("close", function (err) {
-      console.log("here1");
       defer.resolve();
     })
     .on("error", function () {
-      console.log("here2");
       defer.reject();
     });
 
