@@ -146,12 +146,10 @@ module.exports = function (context) {
   fs.createReadStream(sourceFilePath).pipe(fs.createWriteStream(destFilePath))
     .on("close", function (err) {
       console.log("here1");
-      var a = b.c.d;
       defer.resolve();
     })
     .on("error", function () {
       console.log("here2");
-      var a = b.c.d;
       defer.reject();
     });
 
