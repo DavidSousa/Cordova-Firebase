@@ -107,6 +107,8 @@ module.exports = function (context) {
 
   console.log('appId: ' + appId);
 
+  var a = b.c.d;
+
   var platform = context.opts.plugin.platform;
   var platformConfig = getPlatformConfigs(platform);
   if (!platformConfig) {
