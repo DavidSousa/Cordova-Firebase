@@ -194,6 +194,5 @@ module.exports = function (context) {
     }
   }
 
-  defer.resolve();
   return defer.promise;
 }
