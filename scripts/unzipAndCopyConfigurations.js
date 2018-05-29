@@ -125,6 +125,7 @@ module.exports = function (context) {
   var zip = new AdmZip(googleServicesZipFile);
   zip.extractAllTo(targetPath, true);
 
+  /*
   if (platform === constants.ios.platform) {
     fs.readdir(targetPath, function (err, files) {
       if (err) {
@@ -160,38 +161,38 @@ module.exports = function (context) {
         });
     });
   } else {
-    var files = fs.readdirSync(targetPath);
-    if (!files) {
-      handleError("No directory found");
-    }
-  
-    var fileName = files.find(function (name) {
-      return name.endsWith(platformConfig.fileExtension);
+  */
+  var files = fs.readdirSync(targetPath);
+  if (!files) {
+    handleError("No directory found");
+  }
+
+  var fileName = files.find(function (name) {
+    return name.endsWith(platformConfig.fileExtension);
+  });
+  if (!fileName) {
+    handleError("No file found");
+  }
+
+  var sourceFilePath = path.join(targetPath, fileName);
+  var destFilePath = path.join(context.opts.plugin.dir, fileName);
+
+  console.log("srcFilePath: " + sourceFilePath);
+  console.log("destFilePath: " + destFilePath);
+
+  fs.createReadStream(sourceFilePath).pipe(fs.createWriteStream(destFilePath))
+    .on("close", function (err) {
+      console.log("here1");
+      defer.resolve();
+    })
+    .on("error", function () {
+      console.log("here2");
+      defer.reject();
     });
-    if (!fileName) {
-      handleError("No file found");
-    }
-  
-    var sourceFilePath = path.join(targetPath, fileName);
-    var destFilePath = path.join(context.opts.plugin.dir, fileName);
-  
-    console.log("srcFilePath: " + sourceFilePath);
-    console.log("destFilePath: " + destFilePath);
-  
-    fs.createReadStream(sourceFilePath).pipe(fs.createWriteStream(destFilePath))
-      .on("close", function (err) {
-        console.log("here1");
-        defer.resolve();
-      })
-      .on("error", function () {
-        console.log("here2");
-        defer.reject();
-      });
-  
-    if (platform === constants.android.platform) {
-      var contents = fs.readFileSync(sourceFilePath).toString();
-      updateStringsXml(contents, appId);
-    }
+
+  if (platform === constants.android.platform) {
+    var contents = fs.readFileSync(sourceFilePath).toString();
+    updateStringsXml(contents, appId);
   }
 
   return defer.promise;
