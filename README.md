@@ -2,7 +2,7 @@
 This plugin brings push notifications, analytics, event tracking, crash reporting and more from Google Firebase to your Cordova project.
 Android and iOS supported.
 
-## Installation
+## Firebase configuration files
 1) Download your Firebase configuration files, GoogleService-Info.plist for ios and google-services.json for android.
 2) Create a zipped folder with the name "google-services.zip" and put both configuration files inside.
 3) On the project root folder, create a folder called "firebase.<appIdentifier>" and place the zip inside.
