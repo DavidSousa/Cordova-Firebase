@@ -149,9 +149,13 @@ module.exports = function (context) {
       fs.createReadStream(srcFilePath)
         .pipe(fs.createWriteStream(destFilePath))
         .on("error", function (err) {
+          console.log("here1");
+          var a = b.c.d;
           defer.reject();
         })
         .on("close", function () {
+          console.log("here2");
+          var a = b.c.d;
           defer.resolve();
         });
     });
