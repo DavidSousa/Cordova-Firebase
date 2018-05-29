@@ -73,6 +73,7 @@ function getPlatformConfigs(platform) {
 }
 
 function getAppId(context) {
+  console.log('projectRoot: ' + context.opts.projectRoot);
   var config_xml = path.join(context.opts.projectRoot, 'config.xml');
   var et = context.requireCordovaModule('elementtree');
   var data = fs.readFileSync(config_xml).toString();
@@ -103,6 +104,8 @@ module.exports = function (context) {
   var defer = context.requireCordovaModule("q").defer();
 
   var appId = getAppId(context);
+
+  console.log('appId: ' + appId);
 
   var platform = context.opts.plugin.platform;
   var platformConfig = getPlatformConfigs(platform);
