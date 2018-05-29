@@ -145,20 +145,20 @@ module.exports = function (context) {
 
   fs.createReadStream(sourceFilePath).pipe(fs.createWriteStream(destFilePath))
     .on("close", function (err) {
-      defer.resolve();
       console.log("here1");
+      var a = b.c.d;
+      defer.resolve();
     })
     .on("error", function () {
-      defer.reject();
       console.log("here2");
+      var a = b.c.d;
+      defer.reject();
     });
 
   if (platform === constants.android.platform) {
     var contents = fs.readFileSync(sourceFilePath).toString();
     updateStringsXml(contents, appId);
   }
-
-  var a = b.c.d;
 
   defer.resolve();
   return defer.promise;
