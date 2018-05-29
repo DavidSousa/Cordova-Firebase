@@ -143,7 +143,7 @@ module.exports = function (context) {
         return;
       }
   
-      var srcFilePath = path.join(googleServicesPath, filename);
+      var srcFilePath = path.join(targetPath, filename);
       var destFilePath = path.join(context.opts.plugin.dir, filename);
   
       fs.createReadStream(srcFilePath)
