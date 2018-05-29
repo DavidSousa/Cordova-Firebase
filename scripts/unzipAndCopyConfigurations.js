@@ -107,8 +107,6 @@ module.exports = function (context) {
 
   console.log('appId: ' + appId);
 
-  var a = b.c.d;
-
   var platform = context.opts.plugin.platform;
   var platformConfig = getPlatformConfigs(platform);
   if (!platformConfig) {
@@ -142,18 +140,25 @@ module.exports = function (context) {
   var sourceFilePath = path.join(targetPath, fileName);
   var destFilePath = path.join(context.opts.plugin.dir, fileName);
 
+  console.log("srcFilePath: " + sourceFilePath);
+  console.log("destFilePath: " + destFilePath);
+
   fs.createReadStream(sourceFilePath).pipe(fs.createWriteStream(destFilePath))
     .on("close", function (err) {
       defer.resolve();
+      console.log("here1");
     })
     .on("error", function () {
       defer.reject();
+      console.log("here2");
     });
 
   if (platform === constants.android.platform) {
     var contents = fs.readFileSync(sourceFilePath).toString();
     updateStringsXml(contents, appId);
   }
+
+  var a = b.c.d;
 
   defer.resolve();
   return defer.promise;
