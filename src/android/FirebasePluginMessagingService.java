@@ -25,6 +25,7 @@ import java.util.Random;
 public class FirebasePluginMessagingService extends FirebaseMessagingService {
 
     private static final String TAG = "FirebasePlugin";
+    protected static final String KEY = "badge";
 
   /**
    * Get a string from resources without importing the .R package
@@ -109,7 +110,7 @@ public class FirebasePluginMessagingService extends FirebaseMessagingService {
         }
 
         String badge = data.get("badge");
-        Log.d(TAG, "Badge:" + badge);
+        Log.d(TAG, "Badge: " + badge);
         if (badge != null && !badge.isEmpty()) {
           setBadgeNumber(badge);
         }
@@ -200,10 +201,10 @@ public class FirebasePluginMessagingService extends FirebaseMessagingService {
           applyBadgeCount(applicationContext, count);
         } else {
           if (badge.startsWith("++") || badge.startsWith("--")) {
+            int delta = 0;
             int currentBadgeNumber = getCurrentBadgeNumber(applicationContext);
             boolean toIncrement = badge.startsWith("++");
             badge = badge.substring(2);
-            int delta = 0;
             if (badge.isEmpty()) {
               delta = 1;
             } else {
@@ -221,17 +222,19 @@ public class FirebasePluginMessagingService extends FirebaseMessagingService {
     private void applyBadgeCount(Context context, int count) {
       if (count >= 0) {
         Log.d(TAG, "Applying badge count: " + count);
+        SharedPreferences.Editor editor = context.getSharedPreferences(KEY, Context.MODE_PRIVATE).edit();
+        editor.putInt(KEY, count);
+        editor.apply();
         ShortcutBadger.applyCount(context, count);
       }
     }
 
     private int getCurrentBadgeNumber(Context context) {
-      String badgeKey = "badge";
-      SharedPreferences settings = context.getSharedPreferences(badgeKey, Context.MODE_PRIVATE);
-      int currentBadgeNumber = settings.getInt(badgeKey, 0);
+      SharedPreferences settings = context.getSharedPreferences(KEY, Context.MODE_PRIVATE);
+      int currentBadgeNumber = settings.getInt(KEY, 0);
       Log.d(TAG, "badge key: " + settings);
       Log.d(TAG, "current badge: " + currentBadgeNumber);
-      
+
       return currentBadgeNumber;
     }
 
@@ -246,5 +249,5 @@ public class FirebasePluginMessagingService extends FirebaseMessagingService {
           }
       }
       return true;
-  }
+    }
 }
