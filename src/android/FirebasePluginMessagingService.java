@@ -196,7 +196,7 @@ public class FirebasePluginMessagingService extends FirebaseMessagingService {
         int count = 0;
         Context applicationContext = getApplicationContext();
 
-        if (isInteger(badge)) {
+        if (isPositiveInteger(badge)) {
           count = Integer.parseInt(badge);
           applyBadgeCount(applicationContext, count);
         } else {
@@ -211,6 +211,9 @@ public class FirebasePluginMessagingService extends FirebaseMessagingService {
               delta = Integer.parseInt(badge);
             }
             count = toIncrement ? currentBadgeNumber + delta : currentBadgeNumber - delta;
+            if (count < 0) {
+              count = 0;
+            }
             applyBadgeCount(applicationContext, count);
           }
         }
@@ -220,26 +223,22 @@ public class FirebasePluginMessagingService extends FirebaseMessagingService {
     }
 
     private void applyBadgeCount(Context context, int count) {
-      if (count >= 0) {
-        Log.d(TAG, "Applying badge count: " + count);
-        SharedPreferences.Editor editor = context.getSharedPreferences(KEY, Context.MODE_PRIVATE).edit();
-        editor.putInt(KEY, count);
-        editor.apply();
-        ShortcutBadger.applyCount(context, count);
-      }
+      Log.d(TAG, "Applying badge count: " + count);
+      SharedPreferences.Editor editor = context.getSharedPreferences(KEY, Context.MODE_PRIVATE).edit();
+      editor.putInt(KEY, count);
+      editor.apply();
+      ShortcutBadger.applyCount(context, count);
     }
 
     private int getCurrentBadgeNumber(Context context) {
       SharedPreferences settings = context.getSharedPreferences(KEY, Context.MODE_PRIVATE);
       int currentBadgeNumber = settings.getInt(KEY, 0);
-      Log.d(TAG, "badge key: " + settings);
-      Log.d(TAG, "current badge: " + currentBadgeNumber);
-
+      Log.d(TAG, "Current badge count: " + currentBadgeNumber);
       return currentBadgeNumber;
     }
 
     // Defaults radix = 10
-    private static boolean isInteger(String s) {
+    private static boolean isPositiveInteger(String s) {
       if (s == null || s.isEmpty()) {
         return false;
       }
