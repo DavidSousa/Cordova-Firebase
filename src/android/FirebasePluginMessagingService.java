@@ -13,6 +13,7 @@ import android.app.Notification;
 import android.text.TextUtils;
 import android.content.ContentResolver;
 import android.graphics.Color;
+import me.leolin.shortcutbadger.ShortcutBadger;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -106,6 +107,18 @@ public class FirebasePluginMessagingService extends FirebaseMessagingService {
             sendNotification(id, title, text, data, showNotification, sound, lights);
         }
 
+        String badge = data.get("badge");
+        Log.d(TAG, "Badge:" + badge);
+
+        int count = -1;
+        try {
+          if (badge != null) {
+            count = Integer.parseInt(badge);
+            ShortcutBadger.applyCount(getApplicationContext(), count);
+          }
+        } catch (NumberFormatException e) {
+          Log.e(TAG, e.getLocalizedMessage(), e);
+        }
     }
 
     private void sendNotification(String id, String title, String messageBody, Map<String, String> data, boolean showNotification, String sound, String lights) {
