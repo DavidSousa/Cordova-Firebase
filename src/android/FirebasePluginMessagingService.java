@@ -191,32 +191,38 @@ public class FirebasePluginMessagingService extends FirebaseMessagingService {
     }
 
     private void setBadgeNumber(String badge) {
-      int count = 0;
-      Context applicationContext = getApplicationContext();
+      try {
+        int count = 0;
+        Context applicationContext = getApplicationContext();
 
-      if (isInteger(badge)) {
-        count = convertStringToInt(badge);
-        applyBadgeCount(applicationContext, count);
-      } else {
-        if (badge.startsWith("++") || badge.startsWith("--")) {
-          int currentBadgeNumber = getCurrentBadgeNumber(applicationContext);
-          boolean toIncrement = badge.startsWith("++");
-          badge = badge.substring(2);
-          int delta = 0;
-          if (badge.isEmpty()) {
-            delta = 1;
-          } else {
-            delta = convertStringToInt(badge);
-          }
-          count = toIncrement ? currentBadgeNumber + delta : currentBadgeNumber - delta;
+        if (isInteger(badge)) {
+          count = Integer.parseInt(badge);
           applyBadgeCount(applicationContext, count);
+        } else {
+          if (badge.startsWith("++") || badge.startsWith("--")) {
+            int currentBadgeNumber = getCurrentBadgeNumber(applicationContext);
+            boolean toIncrement = badge.startsWith("++");
+            badge = badge.substring(2);
+            int delta = 0;
+            if (badge.isEmpty()) {
+              delta = 1;
+            } else {
+              delta = Integer.parseInt(badge);
+            }
+            count = toIncrement ? currentBadgeNumber + delta : currentBadgeNumber - delta;
+            applyBadgeCount(applicationContext, count);
+          }
         }
+      } catch (Exception e) {
+        Log.e(TAG, e.getLocalizedMessage(), e);
       }
     }
 
     private void applyBadgeCount(Context context, int count) {
-      Log.d(TAG, "Applying badge count: " + count);
-      ShortcutBadger.applyCount(context, count);
+      if (count >= 0) {
+        Log.d(TAG, "Applying badge count: " + count);
+        ShortcutBadger.applyCount(context, count);
+      }
     }
 
     private int getCurrentBadgeNumber(Context context) {
@@ -225,20 +231,15 @@ public class FirebasePluginMessagingService extends FirebaseMessagingService {
       return settings.getInt(badgeKey, 0);
     }
 
-    private int convertStringToInt(String text) {
-      try {
-        if (text != null && !text.isEmpty()) {
-          return Integer.parseInt(text);
-        }
-      } catch (NumberFormatException e) {
-        Log.e(TAG, e.getLocalizedMessage(), e);
-      }
-    }
-
+    // Defaults radix = 10
     private static boolean isInteger(String s) {
-      if (s == null || s.isEmpty()) return false;
+      if (s == null || s.isEmpty()) {
+        return false;
+      }
       for (int i = 0; i < s.length(); i++) {
-          if (Character.digit(s.charAt(i), 10) < 0) return false;
+          if (Character.digit(s.charAt(i), 10) < 0) {
+            return false;
+          }
       }
       return true;
   }
