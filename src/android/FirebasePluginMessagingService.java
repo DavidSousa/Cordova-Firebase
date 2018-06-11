@@ -109,15 +109,8 @@ public class FirebasePluginMessagingService extends FirebaseMessagingService {
 
         String badge = data.get("badge");
         Log.d(TAG, "Badge:" + badge);
-
-        int count = -1;
-        try {
-          if (badge != null) {
-            count = Integer.parseInt(badge);
-            ShortcutBadger.applyCount(getApplicationContext(), count);
-          }
-        } catch (NumberFormatException e) {
-          Log.e(TAG, e.getLocalizedMessage(), e);
+        if (badge != null && !badge.isEmpty()) {
+          setBadgeNumber(badge);
         }
     }
 
@@ -195,4 +188,57 @@ public class FirebasePluginMessagingService extends FirebaseMessagingService {
             FirebasePlugin.sendNotification(bundle);
         }
     }
+
+    private void setBadgeNumber(String badge) {
+      int count = 0;
+      Context applicationContext = getApplicationContext();
+
+      if (isInteger(badge)) {
+        count = convertStringToInt(badge);
+        applyBadgeCount(applicationContext, count);
+      } else {
+        if (badge.startsWith("++") || badge.startsWith("--")) {
+          int currentBadgeNumber = getCurrentBadgeNumber(applicationContext);
+          boolean toIncrement = badge.startsWith("++");
+          badge = badge.substring(2);
+          int delta = 0;
+          if (badge.isEmpty()) {
+            delta = 1;
+          } else {
+            delta = convertStringToInt(badge);
+          }
+          count = toIncrement ? currentBadgeNumber + delta : currentBadgeNumber - delta;
+          applyBadgeCount(applicationContext, count);
+        }
+      }
+    }
+
+    private void applyBadgeCount(Context context, int count) {
+      Log.d(TAG, "Applying badge count: " + count);
+      ShortcutBadger.applyCount(context, count);
+    }
+
+    private int getCurrentBadgeNumber(Context context) {
+      String badgeKey = "badge";
+      SharedPreferences settings = context.getSharedPreferences(badgeKey, Context.MODE_PRIVATE);
+      return settings.getInt(badgeKey, 0);
+    }
+
+    private int convertStringToInt(String text) {
+      try {
+        if (text != null && !text.isEmpty()) {
+          return Integer.parseInt(text);
+        }
+      } catch (NumberFormatException e) {
+        Log.e(TAG, e.getLocalizedMessage(), e);
+      }
+    }
+
+    private static boolean isInteger(String s) {
+      if (s == null || s.isEmpty()) return false;
+      for (int i = 0; i < s.length(); i++) {
+          if (Character.digit(s.charAt(i), 10) < 0) return false;
+      }
+      return true;
+  }
 }
