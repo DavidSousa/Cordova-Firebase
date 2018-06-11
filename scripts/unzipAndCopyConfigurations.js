@@ -38,15 +38,11 @@ function fileExists(path, fs) {
   }
 }
 
-function fileIsZip(file) {
-  return file.match(/\.zip$/);
-}
-
 function getZipFile(folder, zipFileName) {
   try {
     var files = fs.readdirSync(folder);
     for (var i = 0; i < files.length; i++) {
-      if (fileIsZip(files[i])) {
+      if (files[i].endsWith(constants.zipExtension)) {
         var fileName = path.basename(files[i], constants.zipExtension);
         if (fileName === zipFileName) {
           return path.join(folder, files[i]);
