@@ -228,7 +228,10 @@ public class FirebasePluginMessagingService extends FirebaseMessagingService {
     private int getCurrentBadgeNumber(Context context) {
       String badgeKey = "badge";
       SharedPreferences settings = context.getSharedPreferences(badgeKey, Context.MODE_PRIVATE);
-      return settings.getInt(badgeKey, 0);
+      int currentBadgeNumber = settings.getInt(badgeKey, 0);
+      Log.d(TAG, "badge key: " + settings);
+      Log.d(TAG, "current badge: " + currentBadgeNumber);
+      return currentBadgeNumber;
     }
 
     // Defaults radix = 10
