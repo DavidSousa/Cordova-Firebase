@@ -231,6 +231,7 @@ public class FirebasePluginMessagingService extends FirebaseMessagingService {
       int currentBadgeNumber = settings.getInt(badgeKey, 0);
       Log.d(TAG, "badge key: " + settings);
       Log.d(TAG, "current badge: " + currentBadgeNumber);
+      
       return currentBadgeNumber;
     }
 
