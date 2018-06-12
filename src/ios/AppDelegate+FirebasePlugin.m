@@ -96,14 +96,6 @@
     NSLog(@"%@", mutableUserInfo);
 
     [FirebasePlugin.firebasePlugin sendNotification:mutableUserInfo];
-
-    if (userInfo) {
-      if ([userInfo objectForKey:@"notification"]) {
-        if([[userInfo objectForKey:@"notification"] objectForKey:@"badgeCount"]) {
-          [UIApplication sharedApplication].applicationIconBadgeNumber = [[[userInfo objectForKey:@"notification"] objectForKey: @"badgeCount"] intValue];
-        }
-      }
-    }
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
