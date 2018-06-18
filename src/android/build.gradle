@@ -1,25 +1,30 @@
 buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'com.google.gms:google-services:3.1.0'
-    }
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath 'com.google.gms:google-services:3.1.0'
+  }
 }
 android {
-    defaultConfig {
-        // Enabling multidex support.
-        multiDexEnabled true
-    }
+  defaultConfig {
+    // Enabling multidex support.
+    multiDexEnabled true
+  }
+  dexOptions {
+    jumboMode true
+    incremental true 
+	  javaMaxHeapSize "4g"
+  }
 }
 repositories {
-    mavenCentral()
-    maven {
-        url "https://maven.google.com"
-    }
+  mavenCentral()
+  maven {
+    url "https://maven.google.com"
+  }
 }
 dependencies {
-    compile 'me.leolin:ShortcutBadger:1.1.4@aar'
-    compile 'com.google.firebase:firebase-crash:+'
-    compile 'com.google.firebase:firebase-auth:+'
+  compile 'me.leolin:ShortcutBadger:1.1.4@aar'
+  compile 'com.google.firebase:firebase-crash:+'
+  compile 'com.google.firebase:firebase-auth:+'
 }
