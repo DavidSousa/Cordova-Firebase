@@ -56,11 +56,13 @@
 			</service>
 			<receiver android:name="org.apache.cordova.firebase.OnNotificationOpenReceiver"></receiver>
 		</config-file>
-		<config-file parent="/manifest/application/" target="app/src/main/AndroidManifest.xml">
-			<meta-data android:name="com.google.firebase.messaging.default_notification_icon" android:resource="@drawable/notification_icon" />
-		</config-file>
 		<resource-file src="google-services.json" target="./google-services.json" />
 		<resource-file src="src/android/cordova-plugin-firebase-strings.xml" target="res/values/cordova-plugin-firebase-strings.xml" />
+		<resource-file src="resources/android/notification_icon/drawable-mdpi/notification_icon.png" target="res/drawable-mdpi/notification_icon.png" />
+		<resource-file src="resources/android/notification_icon/drawable-hdpi/notification_icon.png" target="res/drawable-hdpi/notification_icon.png" />
+		<resource-file src="resources/android/notification_icon/drawable-xhdpi/notification_icon.png" target="res/drawable-xhdpi/notification_icon.png" />
+		<resource-file src="resources/android/notification_icon/drawable-xxhdpi/notification_icon.png" target="res/drawable-xxhdpi/notification_icon.png" />
+		<resource-file src="resources/android/notification_icon/drawable-xxxhdpi/notification_icon.png" target="res/drawable-xxxhdpi/notification_icon.png" />
 		<source-file src="src/android/FirebasePlugin.java" target-dir="src/org/apache/cordova/firebase" />
 		<source-file src="src/android/OnNotificationOpenReceiver.java" target-dir="src/org/apache/cordova/firebase" />
 		<source-file src="src/android/FirebasePluginInstanceIDService.java" target-dir="src/org/apache/cordova/firebase" />
