@@ -15,6 +15,7 @@
 
 	<hook src="scripts/installDependencies.js" type="before_plugin_install" />
 	<hook src="scripts/unzipAndCopyConfigurations.js" type="before_plugin_install" />
+	<hook src="scripts/copy_fcm_resources.js" type="before_plugin_install" />
 
 	<preference name="APP_DOMAIN" />
 	<preference name="APP_PATH" default ="/" />
