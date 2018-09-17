@@ -720,7 +720,7 @@ public class FirebasePlugin extends CordovaPlugin {
         cordova.getThreadPool().execute(new Runnable() {
             public void run() {
                 try {
-                    //Crashlytics.getInstance().crash();
+                    Crashlytics.getInstance().crash();
                     callbackContext.success();
                 } catch (Exception e) {
                     Crashlytics.log(e.getMessage());
@@ -736,7 +736,7 @@ public class FirebasePlugin extends CordovaPlugin {
         cordova.getThreadPool().execute(new Runnable() {
             public void run() {
                 try {
-                    //Crashlytics.log(crashMessage);
+                    Crashlytics.log(crashMessage);
                     callbackContext.success();
                 } catch (Exception e) {
                     Crashlytics.log(e.getMessage());
@@ -762,11 +762,7 @@ public class FirebasePlugin extends CordovaPlugin {
             }
         });
     }
-
-    // 
-    // Crash reporting
-    //
-
+    
     private void logError(final CallbackContext callbackContext, final String message) throws JSONException {
         cordova.getThreadPool().execute(new Runnable() {
             public void run() {
