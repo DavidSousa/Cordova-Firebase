@@ -804,7 +804,7 @@ public class FirebasePlugin extends CordovaPlugin {
             public void run() {
                 try {
                     // boolean isEnabled = FirebaseCrash.isCrashCollectionEnabled();
-                    callbackContext.success(String.valueOf(isEnabled));
+                    // callbackContext.success(String.valueOf(isEnabled));
                 } catch (Exception e) {
                     Crashlytics.log(e.getMessage());
                     e.printStackTrace();
