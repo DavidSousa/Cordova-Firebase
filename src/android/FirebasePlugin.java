@@ -782,7 +782,7 @@ public class FirebasePlugin extends CordovaPlugin {
         });
     }
 
-    private void enableCrashReport(final CallbackContext callbackContext, final boolean enable) {
+/*    private void enableCrashReport(final CallbackContext callbackContext, final boolean enable) {
         cordova.getThreadPool().execute(new Runnable() {
             public void run() {
                 try {
@@ -797,9 +797,9 @@ public class FirebasePlugin extends CordovaPlugin {
                 }
             }
         });
-    }
+    }*/
 
-    private void isCrashReportEnabled(final CallbackContext callbackContext) {
+/*    private void isCrashReportEnabled(final CallbackContext callbackContext) {
         cordova.getThreadPool().execute(new Runnable() {
             public void run() {
                 try {
@@ -812,7 +812,7 @@ public class FirebasePlugin extends CordovaPlugin {
                 }
             }
         });
-    }
+    }*/
 
     //
     // Remote Configuration
