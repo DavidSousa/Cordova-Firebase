@@ -786,7 +786,7 @@ public class FirebasePlugin extends CordovaPlugin {
         cordova.getThreadPool().execute(new Runnable() {
             public void run() {
                 try {
-                    if enable{
+                    if (enable) {
                         Fabric.with(this, new Crashlytics());
                     }
                     callbackContext.success();
