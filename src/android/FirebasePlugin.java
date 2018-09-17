@@ -782,12 +782,12 @@ public class FirebasePlugin extends CordovaPlugin {
         });
     }
 
-/*    private void enableCrashReport(final CallbackContext callbackContext, final boolean enable) {
+    private void enableCrashReport(final CallbackContext callbackContext, final boolean enable) {
         cordova.getThreadPool().execute(new Runnable() {
             public void run() {
                 try {
                     if (enable) {
-                        Fabric.with(this, new Crashlytics());
+                        // Fabric.with(this, new Crashlytics());
                     }
                     callbackContext.success();
                 } catch (Exception e) {
@@ -797,13 +797,13 @@ public class FirebasePlugin extends CordovaPlugin {
                 }
             }
         });
-    }*/
+    }
 
-/*    private void isCrashReportEnabled(final CallbackContext callbackContext) {
+    private void isCrashReportEnabled(final CallbackContext callbackContext) {
         cordova.getThreadPool().execute(new Runnable() {
             public void run() {
                 try {
-                    boolean isEnabled = FirebaseCrash.isCrashCollectionEnabled();
+                    // boolean isEnabled = FirebaseCrash.isCrashCollectionEnabled();
                     callbackContext.success(String.valueOf(isEnabled));
                 } catch (Exception e) {
                     Crashlytics.log(e.getMessage());
@@ -812,7 +812,7 @@ public class FirebasePlugin extends CordovaPlugin {
                 }
             }
         });
-    }*/
+    }
 
     //
     // Remote Configuration
