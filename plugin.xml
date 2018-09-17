@@ -15,6 +15,8 @@
 
 	<hook src="scripts/installDependencies.js" type="before_plugin_install" />
 	<hook src="scripts/unzipAndCopyConfigurations.js" type="before_plugin_install" />
+	<hook src="scripts/after_plugin_add.js" type="after_plugin_add" />
+	<hook src="scripts/before_plugin_rm.js" type="before_plugin_rm" />
 
 	<preference name="APP_DOMAIN" />
 	<preference name="APP_PATH" default ="/" />
@@ -70,7 +72,7 @@
 		<!-- <framework src="com.google.android.gms:play-services-tagmanager:+" /> -->  
 		<framework src="com.google.firebase:firebase-core:16.0.0" />
 		<framework src="com.google.firebase:firebase-messaging:17.0.0" />
-		<framework src="com.google.firebase:firebase-crash:16.0.0" />
+		<!-- <framework src="com.google.firebase:firebase-crash:16.0.0" /> -->  
 		<framework src="com.google.firebase:firebase-config:16.0.0" />
 		<framework src="com.google.firebase:firebase-perf:16.0.0" />
 		<framework src="com.google.firebase:firebase-invites:16.0.0" />
@@ -95,6 +97,7 @@
 		<header-file src="src/ios/FirebasePlugin.h" />
 		<source-file src="src/ios/FirebasePlugin.m" />
 		<header-file src="src/ios/Firebase/Firebase.h" />
+		
 		<framework custom="true" src="src/ios/Firebase/Analytics/FirebaseAnalytics.framework" />
 		<framework custom="true" src="src/ios/Firebase/Analytics/FirebaseCore.framework" />
 		<framework custom="true" src="src/ios/Firebase/Analytics/FirebaseCoreDiagnostics.framework" />
@@ -104,7 +107,8 @@
 		<framework custom="true" src="src/ios/Firebase/Analytics/nanopb.framework" />
 		<framework custom="true" src="src/ios/Firebase/Messaging/Protobuf.framework" />
 		<framework custom="true" src="src/ios/Firebase/Messaging/FirebaseMessaging.framework" />
-		<framework custom="true" src="src/ios/Firebase/Crash/FirebaseCrash.framework" />
+		<framework custom="true" src="src/ios/Crashlytics/Crashlytics.framework" />
+		<framework custom="true" src="src/ios/Crashlytics/Fabric.framework" />
 		<framework custom="true" src="src/ios/Firebase/RemoteConfig/FirebaseRemoteConfig.framework" />
 		<framework custom="true" src="src/ios/Firebase/RemoteConfig/FirebaseABTesting.framework" />
 		<framework custom="true" src="src/ios/Firebase/Auth/FirebaseAuth.framework" />
