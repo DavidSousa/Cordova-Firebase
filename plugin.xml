@@ -73,6 +73,7 @@
 		<framework src="com.google.firebase:firebase-core:16.0.0" />
 		<framework src="com.google.firebase:firebase-messaging:17.0.0" />
 		<!-- <framework src="com.google.firebase:firebase-crash:16.0.0" /> -->  
+		<framework src="com.crashlytics.sdk.android:crashlytics:2.9.5" />
 		<framework src="com.google.firebase:firebase-config:16.0.0" />
 		<framework src="com.google.firebase:firebase-perf:16.0.0" />
 		<framework src="com.google.firebase:firebase-invites:16.0.0" />
