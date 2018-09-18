@@ -88,12 +88,8 @@ exports.logError = function(message, success, error) {
     exec(success, error, PLUGIN_NAME, "logError", [message]);
 };
 
-exports.isCrashReportEnabled = function (success, error) {
-    exec(success, error, PLUGIN_NAME, "isCrashReportEnabled", []);
-};
-
-exports.enableCrashReport = function (enable, success, error) {
-    exec(success, error, PLUGIN_NAME, "enableCrashReport", [enable]);
+exports.forceCrashlytics = function(message, success, error) {
+    exec(success, error, PLUGIN_NAME, "forceCrashlytics", [message]);
 };
 
 //

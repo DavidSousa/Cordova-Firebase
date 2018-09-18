@@ -192,12 +192,6 @@ public class FirebasePlugin extends CordovaPlugin {
         } else if (action.equals("isPerformanceMonitoringEnabled")) {
             this.isPerformanceMonitoringEnabled(callbackContext);
             return true;
-        } else if (action.equals("enableCrashReport")) {
-            this.enableCrashReport(callbackContext, args.getBoolean(0));
-            return true;
-        } else if (action.equals("isCrashReportEnabled")) {
-            this.isCrashReportEnabled(callbackContext);
-            return true;
         } else if (action.equals("enableAnalytics")) {
             this.enableAnalytics(callbackContext, args.getBoolean(0));
             return true;
@@ -769,38 +763,6 @@ public class FirebasePlugin extends CordovaPlugin {
                 try {
                     Crashlytics.logException(new Exception(message));
                     callbackContext.success(1);
-                } catch (Exception e) {
-                    Crashlytics.log(e.getMessage());
-                    e.printStackTrace();
-                    callbackContext.error(e.getMessage());
-                }
-            }
-        });
-    }
-
-    private void enableCrashReport(final CallbackContext callbackContext, final boolean enable) {
-        cordova.getThreadPool().execute(new Runnable() {
-            public void run() {
-                try {
-                    if (enable) {
-                        Fabric.with(cordova.getActivity(), new Crashlytics());
-                    }
-                    callbackContext.success();
-                } catch (Exception e) {
-                    Crashlytics.log(e.getMessage());
-                    e.printStackTrace();
-                    callbackContext.error(e.getMessage());
-                }
-            }
-        });
-    }
-
-    private void isCrashReportEnabled(final CallbackContext callbackContext) {
-        cordova.getThreadPool().execute(new Runnable() {
-            public void run() {
-                try {
-                    // boolean isEnabled = FirebaseCrash.isCrashCollectionEnabled();
-                    // callbackContext.success(String.valueOf(isEnabled));
                 } catch (Exception e) {
                     Crashlytics.log(e.getMessage());
                     e.printStackTrace();
