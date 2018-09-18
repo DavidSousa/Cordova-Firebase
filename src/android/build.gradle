@@ -5,7 +5,6 @@ buildscript {
   }
   dependencies {
     classpath 'com.google.gms:google-services:4.1.0'
-    classpath 'io.fabric.tools:gradle:1.25.4'
   }
 }
 repositories {
@@ -17,4 +16,5 @@ repositories {
 dependencies {
   compile 'me.leolin:ShortcutBadger:1.1.4@aar'
   compile 'com.google.firebase:firebase-auth:16.0.1'
+  compile 'io.fabric.tools:gradle:1.25.4'
 }
