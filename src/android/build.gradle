@@ -18,7 +18,7 @@ repositories {
   }
 }
 dependencies {
-  implementation 'me.leolin:ShortcutBadger:1.1.4@aar'
-  implementation 'com.google.firebase:firebase-auth:16.0.1'
-  implementation 'io.fabric.tools:gradle:1.25.4'
+  compile 'me.leolin:ShortcutBadger:1.1.4@aar'
+  compile 'com.google.firebase:firebase-auth:16.0.1'
+  compile 'io.fabric.tools:gradle:1.25.4'
 }
