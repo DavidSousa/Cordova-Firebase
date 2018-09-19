@@ -17,7 +17,6 @@
 	<hook src="scripts/unzipAndCopyConfigurations.js" type="before_plugin_install" />
 	<hook src="scripts/after_plugin_add.js" type="after_plugin_add" />
 	<hook src="scripts/before_plugin_rm.js" type="before_plugin_rm" />
-	<!-- <hook src="after_plugin_install.js" type="after_plugin_install" /> -->
 
 	<preference name="APP_DOMAIN" />
 	<preference name="APP_PATH" default ="/" />
