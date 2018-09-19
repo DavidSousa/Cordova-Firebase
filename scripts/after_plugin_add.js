@@ -11,7 +11,7 @@ module.exports = function(context) {
     // at build time.
     if (platforms.indexOf("android") !== -1) {
         androidHelper.removeFabricBuildToolsFromGradle();
-        androidHelper.modifyRootBuildGradle();
+        androidHelper.addFabricBuildToolsGradle();
     }
 
     // Add a build phase which runs a shell script that executes the Crashlytics
