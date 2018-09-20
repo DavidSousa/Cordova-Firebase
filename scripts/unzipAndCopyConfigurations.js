@@ -143,7 +143,7 @@ module.exports = function (context) {
 
   if (platform === constants.android.platform) {
     var contents = fs.readFileSync(sourceFilePath).toString();
-    updateStringsXml(contents, appId);
+    //updateStringsXml(contents, appId);
   }
 
   return defer.promise;
