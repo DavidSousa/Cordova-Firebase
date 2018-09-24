@@ -721,7 +721,11 @@ public class FirebasePlugin extends CordovaPlugin {
                     callbackContext.success();
                 } catch (Exception e) {
                     Log.e(TAG, "Crash forced failed");
-                    logEvent(callbackContext, "Crash_forced_catched", testJSON);
+                    try{
+                        logEvent(callbackContext, "Crash_forced_catched", testJSON);
+                    }catch (JSONException e){
+                        Log.e(TAG, "JSONException catch");
+                    }
                     Crashlytics.log(e.getMessage());
                     e.printStackTrace();
                     callbackContext.error(e.getMessage());
