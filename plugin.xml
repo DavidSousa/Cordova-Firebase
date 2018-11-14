@@ -70,12 +70,12 @@
 		<framework src="src/android/build.gradle" custom="true" type="gradleReference" />
 		<!-- <framework src="com.google.gms:google-services:4.2.0" /> -->  
 		<!-- <framework src="com.google.android.gms:play-services-tagmanager:+" /> -->  
-		<framework src="com.google.firebase:firebase-core:16.0.4" />
-		<framework src="com.google.firebase:firebase-messaging:17.3.4" /> 
-		<framework src="com.crashlytics.sdk.android:crashlytics:2.9.6" />
-		<framework src="com.google.firebase:firebase-config:16.1.0" />
-		<framework src="com.google.firebase:firebase-perf:16.2.0" />
-		<framework src="com.google.firebase:firebase-invites:16.1.0" />
+		<framework src="com.google.firebase:firebase-core:16.0.0" />
+		<framework src="com.google.firebase:firebase-messaging:17.0.0" /> 
+		<framework src="com.crashlytics.sdk.android:crashlytics:2.9.5" />
+		<framework src="com.google.firebase:firebase-config:16.0.0" />
+		<framework src="com.google.firebase:firebase-perf:16.0.0" />
+		<framework src="com.google.firebase:firebase-invites:16.0.0" />
 	</platform>
 
 	<platform name="ios">
