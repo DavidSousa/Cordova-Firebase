@@ -9,8 +9,8 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'io.fabric.tools:gradle:1.15.2'
-        classpath 'com.google.gms:google-services:4.1.0'
+        classpath 'io.fabric.tools:gradle:1.26.1'
+        classpath 'com.google.gms:google-services:4.2.0'
     }
 }
 repositories {
@@ -23,5 +23,5 @@ repositories {
 dependencies {
     compile 'me.leolin:ShortcutBadger:1.1.4@aar'
     compile 'com.google.firebase:firebase-auth:16.0.1'
-    compile 'com.crashlytics.sdk.android:crashlytics:2.9.5'
+   // compile 'com.crashlytics.sdk.android:crashlytics:2.9.6'
 }
