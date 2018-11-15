@@ -98,8 +98,6 @@ function updateStringsXml(contents, appId) {
 module.exports = function (context) {
   var defer = context.requireCordovaModule("q").defer();
 	
-	console.log(path);
-
   var appId = getAppId(context);
 
   var platform = context.opts.plugin.platform;
@@ -109,10 +107,8 @@ module.exports = function (context) {
   }
 
   var wwwPath = getResourcesFolderPath(context, platform, platformConfig);
-	console.log(wwwPath);
   var sourceFolderPath = path.join(wwwPath, constants.folderNamePrefix + appId);
   var targetPath = path.join(wwwPath, constants.googleServices);
-	console.log(targetPath);
 
   var googleServicesZipFile = getZipFile(sourceFolderPath, constants.googleServices);
   if (!googleServicesZipFile) {
