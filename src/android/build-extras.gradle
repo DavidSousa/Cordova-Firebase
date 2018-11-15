@@ -1,3 +1,2 @@
 apply plugin: 'com.google.gms.google-services'
-/* Add the Fabric plugin: */
 apply plugin: 'io.fabric'

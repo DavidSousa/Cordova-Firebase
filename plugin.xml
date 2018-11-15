@@ -12,11 +12,13 @@
 	<js-module name="FirebasePlugin" src="www/firebase.js">
 		<clobbers target="fp" />
 	</js-module>
-
+	
 	<hook src="scripts/installDependencies.js" type="before_plugin_install" />
 	<hook src="scripts/unzipAndCopyConfigurations.js" type="before_plugin_install" />
-	<hook src="scripts/after_plugin_add.js" type="after_plugin_add" />
-	<hook src="scripts/before_plugin_rm.js" type="before_plugin_rm" />
+	
+  <!-- ANDROID HOOKS -->
+	<hook type="after_plugin_install" src="scripts/android/after_plugin_install.js" />
+	<hook type="before_plugin_uninstall" src="scripts/android/before_plugin_uninstall.js" />
 
 	<preference name="APP_DOMAIN" />
 	<preference name="APP_PATH" default ="/" />
@@ -58,6 +60,9 @@
 			</service>
 			<receiver android:name="org.apache.cordova.firebase.OnNotificationOpenReceiver"></receiver>
 		</config-file>
+		<config-file target="AndroidManifest.xml" parent="/manifest/application">
+			<meta-data android:name="com.google.firebase.messaging.default_notification_channel_id" android:value="@string/default_notification_channel_id"/>
+		</config-file>
 		<resource-file src="google-services.json" target="./google-services.json" />
 		<resource-file src="src/android/cordova-plugin-firebase-strings.xml" target="res/values/cordova-plugin-firebase-strings.xml" />
 		<source-file src="src/android/FirebasePlugin.java" target-dir="src/org/apache/cordova/firebase" />
@@ -68,14 +73,13 @@
 		<source-file src="src/android/FirebasePluginMessageReceiverManager.java" target-dir="src/org/apache/cordova/firebase" />
 		<source-file src="src/android/colors.xml" target-dir="res/values" />
 		<framework src="src/android/build.gradle" custom="true" type="gradleReference" />
-		<framework src="com.google.gms:google-services:4.2.0" /> 
+		<framework src="com.google.gms:google-services:4.0.1" />
 		<framework src="com.google.firebase:firebase-core:16.0.4" />
 		<framework src="com.google.firebase:firebase-messaging:17.3.4" />
+		<framework src="com.google.firebase:firebase-crash:16.2.1" />
 		<framework src="com.google.firebase:firebase-config:16.1.0" />
 		<framework src="com.google.firebase:firebase-perf:16.2.0" />
 		<framework src="com.google.firebase:firebase-invites:16.0.4" />
-		<framework src="com.crashlytics.sdk.android:crashlytics:2.9.6" />
-		
 	</platform>
 
 	<platform name="ios">
