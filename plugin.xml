@@ -108,11 +108,11 @@
 		<header-file src="src/ios/FirebasePlugin.h" />
 		<source-file src="src/ios/FirebasePlugin.m" />
 
-    <framework src="FirebaseAnalytics" type="podspec" spec="~> 5.3.0"/>
-		<framework src="FirebaseMessaging" type="podspec" spec="~> 5.2"/>
+    <framework src="FirebaseAnalytics" type="podspec" spec="~> 5.3"/>
+		<framework src="FirebaseMessaging" type="podspec" spec="~> 3.2.1"/>
 		<framework src="FirebaseAuth" type="podspec" spec="~> 5.0.5" />
-		<framework src="FirebaseCrash" type="podspec" spec="~> 2.0.2" />
+		<framework src="FirebaseCrash" type="podspec" spec="~> 3.1.1" />
 		<framework src="FirebaseRemoteConfig" type="podspec" spec="~> 3.1.0" />
-    <framework src="FirebasePerformance" type="podspec" spec="~> 5.0.0" />
+    <framework src="FirebasePerformance" type="podspec" spec="~> 2.2.1" />
 	</platform>
 </plugin>
