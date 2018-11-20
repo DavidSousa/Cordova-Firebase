@@ -1,11 +1,13 @@
 #import "AppDelegate+FirebasePlugin.h"
 #import "FirebasePlugin.h"
-#import <objc/runtime.h>
+@import Fabric;
+@import Crashlytics;
 @import FirebaseInstanceID;
 @import FirebaseMessaging;
 @import FirebaseAnalytics;
 @import FirebaseRemoteConfig;
 @import FirebaseAuth;
+#import <objc/runtime.h>
 
 #if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
 @import UserNotifications;
